@@ -4,7 +4,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { motion } from "framer-motion";
 import { Eye, EyeOff, Mail, Lock } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import api from "../../lib/api";
 
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
@@ -19,6 +21,7 @@ const loginSchema = z.object({
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: zodResolver(loginSchema),
@@ -31,9 +34,24 @@ export default function Login() {
 
   const onSubmit = async (data) => {
     setIsLoading(true);
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    console.log(data);
-    setIsLoading(false);
+    try {
+      const response = await api.post('/login', {
+        identifier: data.email,
+        password: data.password,
+      });
+      
+      toast.success(response.message || 'Logged in successfully!');
+      // Assuming you might store token or user data here if needed,
+      // though the backend sets an httpOnly cookie
+      
+      // Redirect to dashboard (change to your actual dashboard route)
+      navigate('/dashboard');
+    } catch (error) {
+      toast.error(error.message || 'Login failed. Please check your credentials.');
+      console.error('Login error:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

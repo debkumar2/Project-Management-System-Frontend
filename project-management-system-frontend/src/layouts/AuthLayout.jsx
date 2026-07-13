@@ -63,26 +63,30 @@ function InteractiveCard({ children, className }) {
   );
 }
 
+import { useMotionTemplate } from "framer-motion";
+
 export default function AuthLayout() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  }, [mouseX, mouseY]);
+
+  const spotlightBackground = useMotionTemplate`radial-gradient(600px circle at ${mouseX}px ${mouseY}px, rgba(59, 130, 246, 0.08), transparent 40%)`;
 
   return (
     <div className="min-h-screen h-screen bg-black text-white flex w-full relative font-sans selection:bg-blue-500/30 overflow-hidden">
       
       {/* ── Global Mouse Spotlight ── */}
-      <div 
+      <motion.div 
         className="pointer-events-none fixed inset-0 z-0 transition-opacity duration-300"
-        style={{
-          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(59, 130, 246, 0.08), transparent 40%)`
-        }}
+        style={{ background: spotlightBackground }}
       />
 
       {/* ── Animated Perspective Grid ── */}

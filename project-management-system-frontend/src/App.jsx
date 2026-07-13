@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import AuthLayout from "./layouts/AuthLayout";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
@@ -17,6 +18,7 @@ function App() {
           <Route path="/reset-password" element={<ResetPassword />} />
         </Route>
       </Routes>
+      <Toaster position="top-right" toastOptions={{ style: { background: '#111113', color: '#fff', border: '1px solid rgba(255,255,255,0.1)' } }} />
     </BrowserRouter>
   );
 }

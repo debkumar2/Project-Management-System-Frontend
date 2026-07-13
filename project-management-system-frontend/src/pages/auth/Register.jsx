@@ -4,7 +4,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { motion } from "framer-motion";
 import { Eye, EyeOff, User, Mail, Lock, Phone, Globe } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import api from "../../lib/api";
 
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
@@ -13,6 +15,7 @@ import { Label } from "../../components/ui/label";
 const registerSchema = z.object({
   firstName: z.string().min(2, "First name is required"),
   lastName: z.string().min(2, "Last name is required"),
+  username: z.string().min(3, "Username must be at least 3 characters"),
   email: z.string().email("Invalid email address"),
   phone: z.string().min(10, "Valid phone is required"),
   country: z.string().min(2, "Country is required"),
@@ -33,12 +36,14 @@ const registerSchema = z.object({
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm({
     resolver: zodResolver(registerSchema),
     defaultValues: {
       firstName: "",
       lastName: "",
+      username: "",
       email: "",
       phone: "",
       country: "",
@@ -68,9 +73,27 @@ export default function Register() {
 
   const onSubmit = async (data) => {
     setIsLoading(true);
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    console.log(data);
-    setIsLoading(false);
+    try {
+      const response = await api.post('/register', {
+        first_name: data.firstName,
+        last_name: data.lastName,
+        username: data.username,
+        email: data.email,
+        phone: data.phone,
+        country: data.country,
+        password: data.password,
+        confirm_password: data.confirmPassword,
+        accept_terms: data.acceptTerms,
+      });
+
+      toast.success(response.message || 'Registration successful! Please login.');
+      navigate('/login');
+    } catch (error) {
+      toast.error(error.message || 'Registration failed. Please try again.');
+      console.error('Registration error:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -107,6 +130,17 @@ export default function Register() {
               {...register("lastName")}
             />
           </div>
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="username">Username</Label>
+          <Input 
+            id="username" 
+            placeholder="johndoe123"
+            icon={<User size={16} />}
+            error={errors.username}
+            {...register("username")}
+          />
         </div>
 
         <div className="space-y-2">
