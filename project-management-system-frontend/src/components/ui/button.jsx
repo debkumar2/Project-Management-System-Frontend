@@ -3,16 +3,16 @@ import { cn } from "../../lib/utils"
 import { Loader2 } from "lucide-react"
 import { motion } from "framer-motion"
 
-const Button = React.forwardRef(({ 
-  className, 
-  variant = "default", 
-  size = "default", 
+const Button = React.forwardRef(({
+  className,
+  variant = "default",
+  size = "default",
   isLoading = false,
   children,
-  ...props 
+  ...props
 }, ref) => {
   const baseStyles = "inline-flex items-center justify-center whitespace-nowrap rounded-xl text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20 disabled:pointer-events-none disabled:opacity-50"
-  
+
   const variants = {
     default: "bg-white text-black hover:bg-white/90 shadow-[0_0_20px_rgba(255,255,255,0.1)]",
     destructive: "bg-red-500/10 text-red-500 hover:bg-red-500/20 border border-red-500/20",
@@ -21,7 +21,7 @@ const Button = React.forwardRef(({
     ghost: "hover:bg-white/5 text-white/70 hover:text-white",
     link: "text-white/70 underline-offset-4 hover:underline hover:text-white",
   }
-  
+
   const sizes = {
     default: "h-10 px-4 py-2",
     sm: "h-9 rounded-lg px-3",

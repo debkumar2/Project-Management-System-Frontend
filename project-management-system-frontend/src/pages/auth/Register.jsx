@@ -116,9 +116,9 @@ export default function Register() {
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label htmlFor="firstName">First Name</Label>
-            <Input 
-              id="firstName" 
-              placeholder="John" 
+            <Input
+              id="firstName"
+              placeholder="John"
               icon={<User size={16} />}
               error={errors.firstName}
               {...register("firstName")}
@@ -126,8 +126,8 @@ export default function Register() {
           </div>
           <div className="space-y-2">
             <Label htmlFor="lastName">Last Name</Label>
-            <Input 
-              id="lastName" 
+            <Input
+              id="lastName"
               placeholder="Doe"
               icon={<User size={16} />}
               error={errors.lastName}
@@ -139,8 +139,8 @@ export default function Register() {
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label htmlFor="username">Username</Label>
-            <Input 
-              id="username" 
+            <Input
+              id="username"
               placeholder="johndoe123"
               icon={<User size={16} />}
               error={errors.username}
@@ -150,10 +150,10 @@ export default function Register() {
 
           <div className="space-y-2">
             <Label htmlFor="email">Work Email</Label>
-            <Input 
-              id="email" 
-              type="email" 
-              placeholder="john@company.com" 
+            <Input
+              id="email"
+              type="email"
+              placeholder="john@company.com"
               icon={<Mail size={16} />}
               error={errors.email}
               {...register("email")}
@@ -164,9 +164,9 @@ export default function Register() {
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label htmlFor="phone">Phone</Label>
-            <Input 
-              id="phone" 
-              placeholder="+1 555-0000" 
+            <Input
+              id="phone"
+              placeholder="+1 555-0000"
               icon={<Phone size={16} />}
               error={errors.phone}
               {...register("phone")}
@@ -199,7 +199,7 @@ export default function Register() {
                 <option value="Other" className="bg-[#1A1A1D]">Other</option>
               </select>
               <div className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
               </div>
             </div>
             {errors.designation && (
@@ -213,8 +213,8 @@ export default function Register() {
         <div className="space-y-3">
           <Label>Profile Image (Optional)</Label>
           <div className="flex items-center gap-4">
-            <label 
-              htmlFor="profileImageInput" 
+            <label
+              htmlFor="profileImageInput"
               className="relative h-14 w-14 rounded-full border border-white/10 bg-[#1A1A1D] flex items-center justify-center overflow-hidden shrink-0 cursor-pointer group hover:border-white/20 transition-colors shadow-inner"
             >
               {watch("profileImage") ? (
@@ -227,16 +227,16 @@ export default function Register() {
               </div>
             </label>
             <div className="flex flex-col justify-center">
-              <label 
-                htmlFor="profileImageInput" 
+              <label
+                htmlFor="profileImageInput"
                 className="cursor-pointer text-sm font-medium text-white hover:text-white/80 transition-colors"
               >
                 Upload a photo
               </label>
               <p className="text-[12px] text-white/40 mt-0.5">JPG, PNG or GIF. Max 2MB.</p>
-              <input 
-                id="profileImageInput" 
-                type="file" 
+              <input
+                id="profileImageInput"
+                type="file"
                 accept="image/*"
                 className="hidden"
                 onChange={(e) => {
@@ -261,10 +261,10 @@ export default function Register() {
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
               <div className="relative group">
-                <Input 
-                  id="password" 
-                  type={showPassword ? "text" : "password"} 
-                  placeholder="Create password" 
+                <Input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Create password"
                   icon={<Lock size={16} />}
                   className="pr-10"
                   error={errors.password}
@@ -283,9 +283,9 @@ export default function Register() {
             <div className="space-y-2">
               <Label htmlFor="confirmPassword">Confirm Password</Label>
               <div className="relative group">
-                <Input 
-                  id="confirmPassword" 
-                  type={showConfirmPassword ? "text" : "password"} 
+                <Input
+                  id="confirmPassword"
+                  type={showConfirmPassword ? "text" : "password"}
                   placeholder="Confirm password"
                   icon={<Lock size={16} />}
                   className="pr-10"
@@ -302,12 +302,12 @@ export default function Register() {
               </div>
             </div>
           </div>
-          
+
           {password && (
             <div className="flex gap-1 mt-3">
               {[...Array(4)].map((_, i) => (
-                <div 
-                  key={i} 
+                <div
+                  key={i}
                   className={`h-1 flex-1 rounded-full ${i < strength ? getStrengthColor() : "bg-white/10"} transition-all duration-300`}
                 />
               ))}
@@ -317,9 +317,9 @@ export default function Register() {
 
         <div className="flex items-start space-x-2 pt-2">
           <div className="flex h-5 items-center">
-            <input 
-              type="checkbox" 
-              id="terms" 
+            <input
+              type="checkbox"
+              id="terms"
               className="h-4 w-4 rounded border-white/10 bg-[#1A1A1D] text-white focus:ring-1 focus:ring-white/20 focus:ring-offset-0 transition-all checked:bg-white checked:border-white accent-black"
               {...register("acceptTerms")}
             />
