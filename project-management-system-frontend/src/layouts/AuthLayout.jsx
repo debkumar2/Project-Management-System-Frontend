@@ -82,16 +82,16 @@ export default function AuthLayout() {
 
   return (
     <div className="min-h-screen h-screen bg-black text-white flex w-full relative font-sans selection:bg-blue-500/30 overflow-hidden">
-      
+
       {/* ── Global Mouse Spotlight ── */}
-      <motion.div 
+      <motion.div
         className="pointer-events-none fixed inset-0 z-0 transition-opacity duration-300"
         style={{ background: spotlightBackground }}
       />
 
       {/* ── Animated Perspective Grid ── */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden flex items-center justify-center opacity-30">
-        <div 
+        <div
           className="w-[200vw] h-[200vh] absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2"
           style={{
             backgroundImage: `
@@ -113,7 +113,7 @@ export default function AuthLayout() {
 
       {/* ═══ LEFT PANEL ═══ */}
       <div className="hidden lg:flex w-[55%] xl:w-[53%] relative flex-col p-8 xl:p-12 border-r border-white/[0.04] z-10">
-        
+
         {/* Logo + Headline */}
         <div className="relative z-20 shrink-0 mb-8">
           <motion.div {...fadeIn(0)}>
@@ -143,15 +143,15 @@ export default function AuthLayout() {
 
         {/* ── Interactive Dashboard Scene ── */}
         <div className="relative z-20 flex-1 min-h-0 flex flex-col justify-center items-center">
-          
+
           <InteractiveCard className="w-full max-w-[640px] relative">
-            
+
             {/* Holographic Backing */}
             <div className="absolute -inset-1 bg-gradient-to-tr from-blue-500/20 via-purple-500/20 to-transparent rounded-3xl blur-md opacity-50" />
-            
+
             {/* Main App Window */}
             <motion.div {...fadeIn(0.3)} className="relative bg-[#050505]/80 backdrop-blur-3xl rounded-2xl border border-white/10 shadow-[0_0_80px_rgba(59,130,246,0.15)] overflow-hidden flex flex-col h-[380px]">
-              
+
               {/* macOS Chrome */}
               <div className="flex items-center gap-2 px-5 py-3 bg-white/[0.02] border-b border-white/[0.05]">
                 <div className="flex gap-2">
@@ -199,17 +199,23 @@ export default function AuthLayout() {
                   {/* Glass Kanban Columns */}
                   <div className="flex gap-4 flex-1 min-h-0">
                     {[
-                      { title: "To Do", dot: "bg-zinc-500", items: [
-                        { t: "Design system", tag: "Design", tc: "bg-purple-500/20 text-purple-300" },
-                        { t: "API rate limiting", tag: "Backend", tc: "bg-blue-500/20 text-blue-300" },
-                      ]},
-                      { title: "In Progress", dot: "bg-blue-500", items: [
-                        { t: "Auth redesign", tag: "Frontend", tc: "bg-emerald-500/20 text-emerald-300" },
-                      ]},
-                      { title: "Done", dot: "bg-emerald-500", items: [
-                        { t: "Onboarding v2", tag: "Product", tc: "bg-pink-500/20 text-pink-300" },
-                        { t: "CI/CD pipeline", tag: "DevOps", tc: "bg-orange-500/20 text-orange-300" },
-                      ]},
+                      {
+                        title: "To Do", dot: "bg-zinc-500", items: [
+                          { t: "Design system", tag: "Design", tc: "bg-purple-500/20 text-purple-300" },
+                          { t: "API rate limiting", tag: "Backend", tc: "bg-blue-500/20 text-blue-300" },
+                        ]
+                      },
+                      {
+                        title: "In Progress", dot: "bg-blue-500", items: [
+                          { t: "Auth redesign", tag: "Frontend", tc: "bg-emerald-500/20 text-emerald-300" },
+                        ]
+                      },
+                      {
+                        title: "Done", dot: "bg-emerald-500", items: [
+                          { t: "Onboarding v2", tag: "Product", tc: "bg-pink-500/20 text-pink-300" },
+                          { t: "CI/CD pipeline", tag: "DevOps", tc: "bg-orange-500/20 text-orange-300" },
+                        ]
+                      },
                     ].map((col, ci) => (
                       <div key={ci} className="flex-1 flex flex-col">
                         <div className="flex items-center gap-2 mb-3">
@@ -219,8 +225,8 @@ export default function AuthLayout() {
                         </div>
                         <div className="space-y-2">
                           {col.items.map((item, ii) => (
-                            <motion.div 
-                              key={ii} 
+                            <motion.div
+                              key={ii}
                               whileHover={{ scale: 1.02, backgroundColor: "rgba(255,255,255,0.08)" }}
                               className="bg-white/[0.03] rounded-xl p-3 border border-white/[0.05] backdrop-blur-md cursor-pointer transition-colors"
                             >
@@ -237,7 +243,7 @@ export default function AuthLayout() {
             </motion.div>
 
             {/* ── Holographic Floating Elements ── */}
-            
+
             {/* Stats Pill */}
             <motion.div {...fadeIn(0.5)} {...float(0, 4)} className="absolute -top-6 left-12 z-30" style={{ transform: "translateZ(50px)" }}>
               <div className="bg-black/60 backdrop-blur-xl border border-white/10 rounded-full px-6 py-3 flex gap-6 shadow-2xl">
@@ -283,12 +289,12 @@ export default function AuthLayout() {
 
       {/* ═══ RIGHT PANEL (Auth Form) ═══ */}
       <div className="w-full lg:w-[45%] xl:w-[47%] flex items-center justify-center p-6 sm:p-12 relative z-20">
-        
+
         {/* Subtle grid on the right side only */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:linear-gradient(to_left,black,transparent)] pointer-events-none opacity-50" />
 
-        <div className="w-full max-w-[440px] relative">
-          
+        <div className="w-full max-w-[500px] relative">
+
           <div className="lg:hidden flex items-center gap-3 mb-10 justify-center">
             <div className="h-10 w-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
               <Command size={20} className="text-white" />
@@ -296,7 +302,7 @@ export default function AuthLayout() {
             <span className="text-xl font-medium tracking-tight text-white">Nexus</span>
           </div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
@@ -304,9 +310,9 @@ export default function AuthLayout() {
           >
             {/* Animated border gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-            
+
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
-            
+
             <div className="relative z-10">
               <Outlet />
             </div>
