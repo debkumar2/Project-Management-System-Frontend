@@ -35,14 +35,17 @@ export default function Login() {
   const onSubmit = async (data) => {
     setIsLoading(true);
     try {
-      const response = await api.post('/login', {
+      const response = await api.post('/auth/login', {
         identifier: data.email,
         password: data.password,
       });
       
       toast.success(response.message || 'Logged in successfully!');
-      // Assuming you might store token or user data here if needed,
-      // though the backend sets an httpOnly cookie
+      
+      // Store token in localStorage as fallback to cookies
+      if (response.data?.tokens?.accessToken) {
+        localStorage.setItem("accessToken", response.data.tokens.accessToken);
+      }
       
       // Redirect to dashboard (change to your actual dashboard route)
       navigate('/dashboard');

@@ -77,7 +77,7 @@ export default function Register() {
   const onSubmit = async (data) => {
     setIsLoading(true);
     try {
-      const response = await api.post('/register', {
+      const response = await api.post('/auth/register', {
         first_name: data.firstName,
         last_name: data.lastName,
         username: data.username,

@@ -7,7 +7,7 @@ import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
 import Onboarding from "./pages/onboarding/Onboarding";
 import DashboardLayout from "./layouts/DashboardLayout";
-import EmptyWorkspace from "./pages/dashboard/EmptyWorkspace";
+import Dashboard from "./pages/dashboard/Dashboard";
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
         <Route path="/onboarding" element={<Onboarding />} />
         
         <Route element={<DashboardLayout />}>
-          <Route path="/dashboard" element={<EmptyWorkspace />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Route>
       </Routes>
       <Toaster position="top-right" toastOptions={{ style: { background: '#111113', color: '#fff', border: '1px solid rgba(255,255,255,0.1)' } }} />

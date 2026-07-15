@@ -8,6 +8,9 @@ import { Button } from "../../../components/ui/button";
 import { Input } from "../../../components/ui/input";
 import { Label } from "../../../components/ui/label";
 
+import api from "../../../lib/api";
+import { toast } from "react-hot-toast";
+
 const orgSchema = z.object({
   name: z.string().min(2, "Organization name is required"),
   industry: z.string().min(2, "Industry is required"),
@@ -28,8 +31,18 @@ export default function CreateWorkspaceStep({ onBack, onNext }) {
   const slug = orgName ? orgName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "") : "acme";
 
   const onSubmit = async (data) => {
-    // API call would go here
-    onNext({ ...data, logo: logoPreview, slug });
+    try {
+      const response = await api.post('/organizations', {
+        name: data.name,
+        industry: data.industry,
+        website: data.website
+      });
+      toast.success(response.message || "Organization created successfully!");
+      // Proceed to next step with response data
+      onNext({ ...data, logo: logoPreview, slug, orgId: response.data?.id });
+    } catch (error) {
+      toast.error(error.message || "Failed to create organization");
+    }
   };
 
   return (
