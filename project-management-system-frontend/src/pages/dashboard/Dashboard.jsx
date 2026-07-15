@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { 
-  Briefcase, CheckSquare, Users, Database, 
-  MoreVertical, Calendar as CalendarIcon, Clock, 
-  ArrowUpRight, ArrowDownRight, Activity, MessageSquare, 
+import {
+  Briefcase, CheckSquare, Users, Database,
+  MoreVertical, Calendar as CalendarIcon, Clock,
+  ArrowUpRight, ArrowDownRight, Activity, MessageSquare,
   CheckCircle2, AlertCircle
 } from "lucide-react";
 
@@ -40,24 +40,24 @@ export default function Dashboard() {
 
   return (
     <div className="flex flex-col gap-8">
-      
+
       {/* ─── WELCOME SECTION ─── */}
       <section className="bg-[#FFFFFF] dark:bg-[#1E293B] rounded-2xl p-8 border border-[#E5E7EB] dark:border-[#374151] shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden">
         {/* Subtle background decoration */}
         <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-gradient-to-br from-[#2563EB]/5 to-transparent dark:from-[#3B82F6]/5 rounded-full blur-3xl pointer-events-none" />
-        
+
         <div className="relative z-10">
           <h1 className="text-2xl font-bold text-[#111827] dark:text-white mb-3 tracking-tight">
             Good Morning, Debkumar.
           </h1>
           <p className="text-[#6B7280] dark:text-[#9CA3AF] text-[15px] flex items-center gap-2 flex-wrap">
-            Today you have: 
+            Today you have:
             <span className="font-semibold text-[#111827] dark:text-white bg-[#F4F6F8] dark:bg-[#0F172A] px-2.5 py-0.5 rounded-md border border-[#E5E7EB] dark:border-[#374151]">3 tasks due</span>
             <span className="font-semibold text-[#111827] dark:text-white bg-[#F4F6F8] dark:bg-[#0F172A] px-2.5 py-0.5 rounded-md border border-[#E5E7EB] dark:border-[#374151]">2 meetings</span>
             <span className="font-semibold text-[#DC2626] bg-[#DC2626]/10 px-2.5 py-0.5 rounded-md border border-[#DC2626]/20">1 project at risk</span>
           </p>
         </div>
-        
+
         <div className="flex items-center gap-8 text-sm text-[#6B7280] dark:text-[#9CA3AF] md:border-l border-[#E5E7EB] dark:border-[#374151] pl-8 relative z-10">
           <div>
             <p className="text-[11px] uppercase tracking-wider font-semibold mb-1.5 text-[#9CA3AF] dark:text-[#6B7280]">Current Workspace</p>
@@ -118,10 +118,10 @@ export default function Dashboard() {
 
       {/* ─── 12-COLUMN GRID MAIN LAYOUT ─── */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        
+
         {/* LEFT COLUMN (8 cols) */}
         <div className="lg:col-span-8 flex flex-col gap-8">
-          
+
           {/* Active Projects Table */}
           <div className="bg-[#FFFFFF] dark:bg-[#1E293B] rounded-2xl border border-[#E5E7EB] dark:border-[#374151] shadow-sm overflow-hidden flex flex-col">
             <div className="px-6 py-5 border-b border-[#E5E7EB] dark:border-[#374151] flex items-center justify-between bg-[#F8FAFC]/50 dark:bg-[#1F2937]/20">
@@ -130,7 +130,7 @@ export default function Dashboard() {
                 View All
               </button>
             </div>
-            
+
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
@@ -150,19 +150,18 @@ export default function Dashboard() {
                         <div className="text-[13px] text-[#6B7280] dark:text-[#9CA3AF] mt-1">{project.team} members</div>
                       </td>
                       <td className="px-6 py-4.5">
-                        <span className={`inline-flex items-center px-2.5 py-1 rounded-md text-[12px] font-semibold border ${
-                          project.status === 'On Track' ? 'bg-[#16A34A]/10 text-[#16A34A] border-[#16A34A]/20' :
-                          project.status === 'At Risk' ? 'bg-[#DC2626]/10 text-[#DC2626] border-[#DC2626]/20' :
-                          'bg-[#D97706]/10 text-[#D97706] border-[#D97706]/20'
-                        }`}>
+                        <span className={`inline-flex items-center px-2.5 py-1 rounded-md text-[12px] font-semibold border ${project.status === 'On Track' ? 'bg-[#16A34A]/10 text-[#16A34A] border-[#16A34A]/20' :
+                            project.status === 'At Risk' ? 'bg-[#DC2626]/10 text-[#DC2626] border-[#DC2626]/20' :
+                              'bg-[#D97706]/10 text-[#D97706] border-[#D97706]/20'
+                          }`}>
                           {project.status}
                         </span>
                       </td>
                       <td className="px-6 py-4.5 w-48">
                         <div className="flex items-center gap-3">
                           <div className="flex-1 h-2 bg-[#E5E7EB] dark:bg-[#374151] rounded-full overflow-hidden shadow-inner">
-                            <div 
-                              className={`h-full rounded-full ${project.progress >= 70 ? 'bg-[#16A34A]' : project.progress >= 40 ? 'bg-[#D97706]' : 'bg-[#DC2626]'}`} 
+                            <div
+                              className={`h-full rounded-full ${project.progress >= 70 ? 'bg-[#16A34A]' : project.progress >= 40 ? 'bg-[#D97706]' : 'bg-[#DC2626]'}`}
                               style={{ width: `${project.progress}%` }}
                             />
                           </div>
@@ -206,23 +205,22 @@ export default function Dashboard() {
                       {task.project}
                     </p>
                   </div>
-                  <span className={`px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider border ${
-                    task.priority === 'High' ? 'bg-[#DC2626]/10 text-[#DC2626] border-[#DC2626]/20' :
-                    task.priority === 'Medium' ? 'bg-[#D97706]/10 text-[#D97706] border-[#D97706]/20' :
-                    'bg-[#F4F6F8] text-[#6B7280] border-[#E5E7EB] dark:bg-[#0F172A] dark:text-[#9CA3AF] dark:border-[#374151]'
-                  }`}>
+                  <span className={`px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider border ${task.priority === 'High' ? 'bg-[#DC2626]/10 text-[#DC2626] border-[#DC2626]/20' :
+                      task.priority === 'Medium' ? 'bg-[#D97706]/10 text-[#D97706] border-[#D97706]/20' :
+                        'bg-[#F4F6F8] text-[#6B7280] border-[#E5E7EB] dark:bg-[#0F172A] dark:text-[#9CA3AF] dark:border-[#374151]'
+                    }`}>
                     {task.priority}
                   </span>
                 </div>
               ))}
             </div>
           </div>
-          
+
         </div>
 
         {/* RIGHT COLUMN (4 cols) */}
         <div className="lg:col-span-4 flex flex-col gap-8">
-          
+
           {/* Today's Schedule */}
           <div className="bg-[#FFFFFF] dark:bg-[#1E293B] rounded-2xl border border-[#E5E7EB] dark:border-[#374151] shadow-sm flex flex-col">
             <div className="px-6 py-5 border-b border-[#E5E7EB] dark:border-[#374151] flex items-center justify-between bg-[#F8FAFC]/50 dark:bg-[#1F2937]/20">
@@ -266,7 +264,7 @@ export default function Dashboard() {
               ].map((act, i) => (
                 <div key={i} className="flex items-start gap-4">
                   <div className="h-10 w-10 rounded-full bg-[#F4F6F8] dark:bg-[#0F172A] border border-[#E5E7EB] dark:border-[#374151] flex items-center justify-center shrink-0 shadow-sm">
-                    <span className="text-[12px] font-bold text-[#6B7280] dark:text-[#9CA3AF]">{act.user.split(' ').map(n=>n[0]).join('')}</span>
+                    <span className="text-[12px] font-bold text-[#6B7280] dark:text-[#9CA3AF]">{act.user.split(' ').map(n => n[0]).join('')}</span>
                   </div>
                   <div className="flex-1 min-w-0 pt-0.5">
                     <p className="text-[14px] text-[#111827] dark:text-[#E5E7EB] leading-tight">
